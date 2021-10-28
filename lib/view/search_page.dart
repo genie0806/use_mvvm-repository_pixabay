@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:try_image_search/repository_model/saearch_model.dart';
 import 'package:try_image_search/view_model/search_image_view_model.dart';
 import 'package:try_image_search/widget/card_widget.dart';
 import 'package:try_image_search/widget/detiail_widget.dart';
