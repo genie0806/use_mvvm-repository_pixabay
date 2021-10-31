@@ -1,18 +1,21 @@
 import 'package:flutter/cupertino.dart';
-import 'package:try_image_search/repository_model/repository.dart';
-import 'package:try_image_search/repository_model/saearch_model.dart';
+
+import 'package:try_image_search/data/photo_state.dart';
+import 'package:try_image_search/data/repository.dart';
+import 'package:try_image_search/model/saearch_model.dart';
 
 class SearchImageViewModel extends ChangeNotifier {
-  photoRepository repository;
-  SearchModel? _photos;
+  PhotoRepository repository;
   SearchImageViewModel(
     this.repository,
   );
 
-  SearchModel? get photo => _photos;
+  PhotoState _state = PhotoState();
+  PhotoState get state => _state;
 
   Future<void> fetch(String query) async {
-    _photos = await repository.getPhotos(query);
+    final result = await repository.getPhotos(query);
+    _state = _state.copyWith(searchModel: result);
     notifyListeners();
   }
 }

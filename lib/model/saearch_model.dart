@@ -1,4 +1,4 @@
-import 'package:try_image_search/repository_model/search_data.dart';
+import 'package:try_image_search/model/search_data.dart';
 
 class SearchModel {
   int? total;
@@ -13,7 +13,7 @@ class SearchModel {
     if (json['hits'] != null) {
       hits = [];
       json['hits'].forEach((v) {
-        hits?.add(new Hits.fromJson(v));
+        hits?.add(Hits.fromJson(v));
       });
     }
   }

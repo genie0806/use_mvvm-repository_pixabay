@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:try_image_search/View/search_page.dart';
-import 'package:try_image_search/repository_model/photo_repository_impl.dart';
+import 'package:try_image_search/model/api_model.dart';
+import 'package:try_image_search/data/photo_repository_impl.dart';
 import 'package:try_image_search/view_model/search_image_view_model.dart';
 
 void main() {
-  final repository = PixabayPhotoRepositoryImpl();
+  final repository = PixabayPhotoRepositoryImpl(PixaBayApi());
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider.value(value: SearchImageViewModel(repository))
   ], child: const TryImageSearch()));
@@ -16,9 +17,9 @@ class TryImageSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Try Image Search',
-      home: const SearchImageView(),
+      home: SearchImageView(),
     );
   }
 }
