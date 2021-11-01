@@ -20,8 +20,9 @@ class SearchImageViewModel extends ChangeNotifier {
 
   Future<void> fetch(String query) async {
     final result = await repository.getPhotos(query);
-    final resultPhotos = (result as Success<SearchModel>).data;
+
     if (result is Success) {
+      final resultPhotos = (result as Success<SearchModel>).data;
       _state = _state.copyWith(searchModel: resultPhotos);
       notifyListeners();
     } else if (result is Error) {
