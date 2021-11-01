@@ -27,7 +27,7 @@ class SearchImageViewModel extends ChangeNotifier {
       notifyListeners();
     } else if (result is Error) {
       print((result as Error).e.toString());
-      _eventController.add(UiEvent.showSnackBar('네트워크 에러다 이자식아'));
+      _eventController.add(UiEvent.showSnackBar('네트워크 에러다'));
     }
   }
 }
