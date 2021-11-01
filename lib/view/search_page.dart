@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:try_image_search/view/ui_event.dart';
 import 'package:try_image_search/view_model/search_image_view_model.dart';
 import 'package:try_image_search/widget/card_widget.dart';
 import 'package:try_image_search/widget/detiail_widget.dart';
@@ -21,6 +22,12 @@ class _SearchImageViewState extends State<SearchImageView> {
     super.initState();
     Future.microtask(() {
       context.read<SearchImageViewModel>().fetch('iphone');
+      context.read<SearchImageViewModel>().eventStream.listen((event) {
+        if (event is Showsnackbar) {
+          final snackbar = SnackBar(content: Text(event.message));
+          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+        }
+      });
     });
   }
 
@@ -72,14 +79,14 @@ class _SearchImageViewState extends State<SearchImageView> {
   }
 
   Widget imageResultView(SearchImageViewModel viewModel, BuildContext context) {
-    if (viewModel.photo != null) {
+    if (viewModel.state.searchModel != null) {
       final viewModel = context.watch<SearchImageViewModel>();
       return GridView.count(
           physics: const NeverScrollableScrollPhysics(),
           childAspectRatio: 0.85 / 1,
           crossAxisCount: 2,
           shrinkWrap: true,
-          children: viewModel.photo!.hits!
+          children: viewModel.state.searchModel!.hits!
               .where((e) =>
                   e.tags.toLowerCase().contains(query.trim().toLowerCase()))
               .map((e) => CardViewItem(

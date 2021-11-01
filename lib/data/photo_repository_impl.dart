@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
+import 'package:try_image_search/data/result.dart';
 
 import 'package:try_image_search/model/api_model.dart';
 import 'package:try_image_search/data/repository.dart';
@@ -14,7 +13,7 @@ class PixabayPhotoRepositoryImpl implements PhotoRepository {
   );
 
   @override
-  Future<SearchModel> getPhotos(String query) async {
+  Future<Result<SearchModel>> getPhotos(String query) async {
     return api.fetchSearchData(query);
   }
 }
