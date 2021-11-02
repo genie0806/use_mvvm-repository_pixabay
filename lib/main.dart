@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:try_image_search/View/search_page.dart';
-import 'package:try_image_search/model/api_model.dart';
-import 'package:try_image_search/data/photo_repository_impl.dart';
-import 'package:try_image_search/view_model/search_image_view_model.dart';
+import 'package:try_image_search/domain/model/api_model.dart';
+import 'package:try_image_search/data/repository/photo_repository_impl.dart';
+import 'package:try_image_search/domain/repository/repository.dart';
+import 'package:try_image_search/presentation/mainview/search_page.dart';
+import 'package:try_image_search/presentation/mainview/view_model/search_image_view_model.dart';
 
 void main() {
-  final repository = PixabayPhotoRepositoryImpl(PixaBayApi());
+  final PhotoRepository repository = PixabayPhotoRepositoryImpl(PixaBayApi());
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider.value(value: SearchImageViewModel(repository))
   ], child: const TryImageSearch()));
