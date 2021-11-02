@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:try_image_search/view/ui_event.dart';
-import 'package:try_image_search/view_model/search_image_view_model.dart';
+import 'package:try_image_search/presentation/mainview/view_model/search_image_view_model.dart';
+import 'package:try_image_search/presentation/mainview/ui_event.dart';
 import 'package:try_image_search/widget/card_widget.dart';
 import 'package:try_image_search/widget/detiail_widget.dart';
 import 'package:try_image_search/widget/search_bar_widget.dart';

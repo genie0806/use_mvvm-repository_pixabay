@@ -1,4 +1,4 @@
-import 'package:try_image_search/model/search_data.dart';
+import 'package:try_image_search/domain/model/search_data.dart';
 
 class SearchModel {
   int? total;

@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
-import 'package:try_image_search/data/photo_state.dart';
-import 'package:try_image_search/data/repository.dart';
+import 'package:try_image_search/domain/repository/repository.dart';
 import 'package:try_image_search/data/result.dart';
-import 'package:try_image_search/model/saearch_model.dart';
-import 'package:try_image_search/view/ui_event.dart';
+import 'package:try_image_search/domain/model/saearch_model.dart';
+import 'package:try_image_search/presentation/mainview/view_model/photo_state.dart';
+import 'package:try_image_search/presentation/mainview/ui_event.dart';
 
 class SearchImageViewModel extends ChangeNotifier {
   PhotoRepository repository;
