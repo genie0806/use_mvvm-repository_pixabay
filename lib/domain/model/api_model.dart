@@ -1,7 +1,7 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
-import 'package:try_image_search/data/result.dart';
-import 'package:try_image_search/model/saearch_model.dart';
+import 'package:try_image_search/domain/repository/result.dart';
+import 'package:try_image_search/domain/model/saearch_model.dart';
 
 class PixaBayApi {
   static const baseUrl = 'https://pixabay.com/api/';
