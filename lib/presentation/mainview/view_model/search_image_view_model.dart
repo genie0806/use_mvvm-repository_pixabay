@@ -1,15 +1,19 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:try_image_search/domain/repository/repository.dart';
 import 'package:try_image_search/domain/repository/result.dart';
 import 'package:try_image_search/domain/model/saearch_model.dart';
+import 'package:try_image_search/domain/use_case/get_photos.dart';
+import 'package:try_image_search/domain/use_case/main_use_cases.dart';
 import 'package:try_image_search/presentation/mainview/view_model/photo_state.dart';
 import 'package:try_image_search/presentation/mainview/ui_event.dart';
 
 class SearchImageViewModel extends ChangeNotifier {
-  PhotoRepository repository;
+  MainUseCases useCases;
+
   SearchImageViewModel(
-    this.repository,
+    this.useCases,
   );
 
   PhotoState _state = PhotoState();
@@ -19,15 +23,14 @@ class SearchImageViewModel extends ChangeNotifier {
   Stream<UiEvent> get eventStream => _eventController.stream;
 
   Future<void> fetch(String query) async {
-    final result = await repository.getPhotos(query);
+    final result = await useCases.getPhotos(query);
 
-    if (result is Success) {
-      final resultPhotos = (result as Success<SearchModel>).data;
+    result.when(success: (resultPhotos) {
       _state = _state.copyWith(searchModel: resultPhotos);
       notifyListeners();
-    } else if (result is Error) {
+    }, error: (e) {
       print((result as Error).e.toString());
       _eventController.add(UiEvent.showSnackBar('네트워크 에러다'));
-    }
+    });
   }
 }
